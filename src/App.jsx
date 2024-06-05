@@ -1,23 +1,28 @@
-import { Layout } from "components/Layout/Layout";
-import { Note } from "pages/Note/Note";
-import { NoteBrowse } from "pages/NoteBrowse/NoteBrowse";
-import { NoteCreate } from "pages/NoteCreate/NoteCreate";
-import { PageNotFound } from "pages/PageNotFound/PageNotFound";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { NoteAPI } from "api/note";
+import { Header } from "components/Header/Header";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Outlet } from "react-router-dom";
+import { setNoteList } from "store/notes/notes-slice";
 
 export function App() {
+  const dispatch = useDispatch();
+
+  async function fetchNotes() {
+    const noteList = await NoteAPI.fetchAll();
+    dispatch(setNoteList(noteList));
+  }
+
+  useEffect(() => {
+    fetchNotes();
+  }, []);
+
   return (
     <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route path="/" element={<NoteBrowse />} />
-            <Route path="/note/:noteId" element={<Note />} />
-            <Route path="/note/new" element={<NoteCreate />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <Header />
+      <div style={{ padding: 50 }}>
+        <Outlet />
+      </div>
     </div>
   );
 }
