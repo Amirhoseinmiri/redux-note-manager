@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { NoteAPI } from "api/note-api";
 import { Header } from "components/Header/Header";
 import { useEffect } from "react";

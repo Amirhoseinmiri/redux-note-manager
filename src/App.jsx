@@ -12,7 +12,7 @@ export function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route path="/" element={<NoteBrowse />} />
-            <Route path="/note/:id" element={<Note />} />
+            <Route path="/note/:noteId" element={<Note />} />
             <Route path="/note/new" element={<NoteCreate />} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
