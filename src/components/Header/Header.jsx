@@ -1,8 +1,7 @@
-// import { Logo } from "components/Logo/Logo";
+import { Logo } from "components/Logo/Logo";
 import s from "./style.module.css";
 import logoSrc from "assets/images/logo.png";
 import { ButtonPrimary } from "components/ButtonPrimary/ButtonPrimary";
-import { Logo } from "components/logo";
 import { useNavigate } from "react-router-dom";
 
 export function Header(props) {
